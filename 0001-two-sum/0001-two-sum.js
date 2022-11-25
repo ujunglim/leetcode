@@ -3,7 +3,6 @@
  * @param {number} target
  * @return {number[]}
  */
-// check if the secondNum exists or not by map
 var twoSum = function (nums, target) {
   const map = new Map();
 
