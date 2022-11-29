@@ -4,14 +4,14 @@
  * @return {boolean}
  */
 var containsNearbyDuplicate = function(nums, k) {
+    const map = new Map();
+
     for(let i = 0; i < nums.length; i++) {
         const curr = nums[i];
-        for(let j = i-k; j <= i+k; j++) {
-            // j should be valid index, also i != j
-            if(j >= 0 && j < nums.length && i !== j) {
-                if(nums[j] === curr) return true;
-            }
+        if(map.has(curr) && Math.abs(map.get(curr) - i) <= k) {
+            return true;
         }
+        map.set(curr, i);
     }
     return false;
 };
