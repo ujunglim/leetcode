@@ -4,14 +4,27 @@
  */
 // [-2,1,-3,4,-1,2,1,-5,4]
 var maxSubArray = function(nums) {
-    let solution = nums[0];
+    if(nums.length === 1) return nums[0];
+    let localMax = nums[0];
+    let maxValue = nums[0];
     
     for(let i = 1; i < nums.length; i++) {
-        nums[i] = Math.max(nums[i], nums[i] + nums[i-1]); // 
-        solution = Math.max(solution, nums[i]);
+        localMax = Math.max(localMax + nums[i], nums[i]); // check acc, current which one is bigger
+        maxValue = Math.max(maxValue, localMax);
     }
-    return solution;
+    return maxValue;
 };
+
+// =====================
+// var maxSubArray = function(nums) {
+//     let solution = nums[0];
+    
+//     for(let i = 1; i < nums.length; i++) {
+//         nums[i] = Math.max(nums[i], nums[i] + nums[i-1]); // 
+//         solution = Math.max(solution, nums[i]);
+//     }
+//     return solution;
+// };
 // ============================
 // -10^4 <= nums[i] <= 10^4 -Number.MAX_VALUE
 // var maxSubArray = function(nums) {
