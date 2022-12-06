@@ -12,32 +12,27 @@
  */
 var removeNthFromEnd = function (head, n) {
   if (!head) return null;
-  let curr = head;
-  let totalLen = 1;
 
-  // find total length;
-  while (curr.next) {
-    totalLen++;
-    curr = curr.next;
-  }
-
-  curr = head;
-
-  let idx = 0;
-  let targetIdx = totalLen - n;
   let dummy = new ListNode(null);
-  dummy.next = curr;
-  let prev = dummy;
+  dummy.next = head;
+  let curr = head;
+  let size = 0;
 
-  while (idx <= targetIdx) {
-    if (idx === targetIdx) {
-      prev.next = curr.next;
-      curr = curr.next;
-      break;
-    }
-    prev = curr;
+  // find total size;
+  while (curr) {
+    size++;
     curr = curr.next;
-    idx++;
   }
+
+  // reset curr to dummy
+  curr = dummy;
+
+  // move curr to before target
+  for (let i = 0; i < size - n; i++) {
+    curr = curr.next;
+  }
+
+  // remove target
+  curr.next = curr.next.next;
   return dummy.next;
 };
