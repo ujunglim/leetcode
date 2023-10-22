@@ -22,5 +22,5 @@ var removeElement = function(nums, val) {
             }
         }
     }
-    return left; 
+    return right+1; 
 };
