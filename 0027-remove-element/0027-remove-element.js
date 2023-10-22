@@ -4,22 +4,13 @@
  * @return {number}
  */
 var removeElement = function(nums, val) {
-    let needToBeReplacedIndex = 0; // which is val, from start of the arr
-    let lastValidIndex = nums.length-1; // which is not val, from end of the arr
-    
-    while(needToBeReplacedIndex <= lastValidIndex) {
-        if (nums[needToBeReplacedIndex] === val && nums[lastValidIndex] !== val) {
-            nums[needToBeReplacedIndex] = nums[lastValidIndex];
-            needToBeReplacedIndex++;
-            lastValidIndex--;
-            continue;
-        }
-        if (nums[needToBeReplacedIndex] !== val) {
-            needToBeReplacedIndex++;
-        }
-        if (nums[lastValidIndex] === val) {
-            lastValidIndex--;
+    let i = 0;
+    for (const num of nums) {
+        // val가 아닌 수를 찾으면
+        if (num !== val) {
+            nums[i] = num; // val가 아니면 원래 값 그대로 유지
+            i++;
         }
     }
-    return lastValidIndex >= 0 ? lastValidIndex+1 : 0;
+    return i;
 };
