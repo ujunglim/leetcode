@@ -26,7 +26,6 @@ var isLongPressedName = function(name, typed) {
     // name, typed 각각 char의 중복 횟수를 구한다.
     const nameArr = getRepeatedCountArr(name);
     const typeArr = getRepeatedCountArr(typed);
-    console.log(nameArr, typeArr)
     
     // name, typed의 고유문자 갯수가 다르면 false
     if (nameArr.length !== typeArr.length) {
