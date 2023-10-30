@@ -9,15 +9,12 @@ var threeSum = function(nums) {
     
     // 첫번째 
     let i = 0;
-    while(i < nums.length-2) {
+    for (let i = 0; i < nums.length-2; i+=1) {
         if (nums[i-1] === nums[i]) {
-            i++;
             continue; // 첫번째가 이전과 같은 숫자면 스킵한다
         }
-        while(nums[i-1] === nums[i]) i++; 
-        // 두번째
-        let j = i+1; // 두번째는 첫번째 바로 뒤 부터 시작한다.
-        while(j < nums.length-1) {
+        // 두번째는 첫번째 바로 뒤부터 시작한다.
+        for (let j = i+1; j < nums.length-1; j+=1) {
             // 세번째
             let k = nums.length-1;
             while(j < k) { // 두번쨰와 세번째는 교차할 수 없다 (두번째 < 세번째)
@@ -36,9 +33,7 @@ var threeSum = function(nums) {
                     j++;
                 }
             }
-            j++; // 두번째 이동
         }
-        i++; // 첫번쨰 이동
     }
     return result;
 };
