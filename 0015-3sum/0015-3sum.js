@@ -1,15 +1,17 @@
 var threeSum = function(nums) {
     const result = [];
     const target = 0;
-    nums = nums.sort((a, b) => a - b); // 정렬해주어서 포인터의 이동시 판단을 더 간편하게 할 수 있다.
-   
-    if (nums[0] > target || nums.length < 3) {
+    if (nums.length < 3) {
         return result;
     }
-    
+    nums = nums.sort((a, b) => a - b); // 정렬해주어서 포인터의 이동시 판단을 더 간편하게 할 수 있다.
+   
     // 첫번째 
     let i = 0;
     for (let i = 0; i < nums.length-2; i+=1) {
+        if (nums[i] > target) {
+            return result;
+        }
         if (nums[i-1] === nums[i]) {
             continue; // 첫번째가 이전과 같은 숫자면 스킵한다
         }
