@@ -12,7 +12,7 @@ var threeSum = function(nums) {
         if (nums[i] > target) {
             return result;
         }
-        if (nums[i-1] === nums[i]) {
+        if (i > 0 && nums[i-1] === nums[i]) {
             continue; // 첫번째가 이전과 같은 숫자면 스킵한다
         }
         // 두번째는 첫번째 바로 뒤부터 시작한다.
