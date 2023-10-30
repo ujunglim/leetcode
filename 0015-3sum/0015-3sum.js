@@ -1,15 +1,20 @@
-/**
- * @param {number[]} nums
- * @return {number[][]}
- */
 var threeSum = function(nums) {
     const result = [];
     const target = 0;
     nums = nums.sort((a, b) => a - b); // 정렬해주어서 포인터의 이동시 판단을 더 간편하게 할 수 있다.
+   
+    if (nums[0] > target || nums.length < 3) {
+        return result;
+    }
+    
     // 첫번째 
     let i = 0;
     while(i < nums.length-2) {
-        while(nums[i-1] === nums[i]) i++; // 첫번째가 이전과 같은 숫자면 스킵한다
+        if (nums[i-1] === nums[i]) {
+            i++;
+            continue; // 첫번째가 이전과 같은 숫자면 스킵한다
+        }
+        while(nums[i-1] === nums[i]) i++; 
         // 두번째
         let j = i+1; // 두번째는 첫번째 바로 뒤 부터 시작한다.
         while(j < nums.length-1) {
