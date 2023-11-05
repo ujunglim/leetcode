@@ -18,7 +18,7 @@ var getIntersectionNode = function(headA, headB) {
     let pB = headB;
     let switchCount = 0;
     
-    // 아직 시작 안 했거나, 시작했는데 둘다 원래자리로 돌아오기 전까지 before return to init position
+    // 포인터 교환이 2번 미만일때 까지
     while(switchCount < 2) {
         // 둘이 만남
         if (switchCount > 0 && pA === pB) {
