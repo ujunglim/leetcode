@@ -11,16 +11,16 @@
  * @return {boolean}
  */
 var hasCycle = function(head) {
-    let p = head;
-    while(p) {
-        if (!p.isVisited) {
-            p.isVisited = true;
-            p = p.next;
-            continue;
-        } else {
+    let p1 = head;
+    let p2 = head;
+    
+    while(p2 && p2.next) {
+        p1 = p1.next;
+        p2 = p2.next.next;
+        // two pointers have met
+        if (p1 === p2) {
             return true;
         }
     }
     return false;
 };
-
