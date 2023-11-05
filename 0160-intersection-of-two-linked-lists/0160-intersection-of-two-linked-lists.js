@@ -16,15 +16,12 @@
 var getIntersectionNode = function(headA, headB) {
     let pA = headA;
     let pB = headB;
-    let started = false;
     let switchCount = 0;
     
     // 아직 시작 안 했거나, 시작했는데 둘다 원래자리로 돌아오기 전까지 before return to init position
-    // while(!started || (started && (pA !== headA || pB !== headB))) {
     while(switchCount < 2) {
-        started = true;
         // 둘이 만남
-        if (started && pA === pB) {
+        if (switchCount > 0 && pA === pB) {
             return pA;
         }
         if (pA && pA.next) {
