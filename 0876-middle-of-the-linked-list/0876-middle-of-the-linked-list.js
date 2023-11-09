@@ -32,3 +32,6 @@ var middleNode = function(head) {
     }
     return p1;
 };
+
+
+// time O(N/2)
