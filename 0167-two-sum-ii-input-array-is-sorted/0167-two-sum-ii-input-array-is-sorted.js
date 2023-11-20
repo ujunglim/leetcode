@@ -4,18 +4,20 @@
  * @return {number[]}
  */
 var twoSum = function(numbers, target) {
-    let i = 0; 
-    let j = numbers.length-1;
+    let p1 = 0;
+    let p2 = numbers.length-1;
     
-    while(i < j) {
-        const sum = numbers[i] + numbers[j];
+    while(p1 < p2) {
+        const sum = numbers[p1] + numbers[p2];
         if (sum === target) {
-            return [i+1, j+1];
+            return [p1+1, p2+1];
         }
         if (sum < target) {
-            i++;
+            p1++
         } else {
-            j--;
+            p2--;
         }
     }
-};
+}; 
+
+// p1, p2가 같으면 안 됌
