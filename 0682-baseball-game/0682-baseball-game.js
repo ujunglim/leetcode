@@ -5,7 +5,6 @@
 var calPoints = function(operations) {
     const stack = [];
     for (const op of operations) {
-        console.log(stack)
         const element = Number(op);
         // 숫자일때
         if (!isNaN(element)) {
