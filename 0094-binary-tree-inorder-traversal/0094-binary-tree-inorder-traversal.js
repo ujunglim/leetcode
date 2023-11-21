@@ -6,21 +6,35 @@
  *     this.right = (right===undefined ? null : right)
  * }
  */
-// left -> mid -> right
 /**
  * @param {TreeNode} root
  * @return {number[]}
  */
+
+// left -> mid -> right
 var inorderTraversal = function(root) {
     const result = [];
-    dfs(root, result);
-    function dfs(root, result) {
+    dfs(root);
+    function dfs(root) {
         if (!root) {
             return;
         }
-        dfs(root.left, result);
+        dfs(root.left);
         result.push(root.val);
-        dfs(root.right, result);
+        dfs(root.right);
     }
     return result;
 };
+
+// var inorderTraversal = function (root) {
+//   const result = [];
+
+//   function dfs(curr) {
+//     if (curr === null) return;
+//     dfs(curr.left);
+//     result.push(curr.val);
+//     dfs(curr.right);
+//   }
+//   dfs(root);
+//   return result;
+// };
