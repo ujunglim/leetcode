@@ -4,32 +4,30 @@
  * @return {boolean}
  */
 var backspaceCompare = function(s, t) {
-    const sArr = [...s];
-    const tArr = [...t];
+    const stack = [];
     
-    let newS = [];
-    let newT = [];
-    
-    for (let sElement of sArr) {
-        if(sElement === '#') {
-            newS.pop();
+    for (let i = 0; i < s.length; ++i) {
+        if (s[i] !== '#') {
+            stack.push(s[i]);
         } else {
-            newS.push(sElement);
+            stack.pop();
         }
     }
     
-    for (let tElement of tArr) {
-        if (tElement === '#') {
-            newT.pop();
+    let removeCount = 0;
+    for (let j = t.length-1; j >= 0; --j) {
+        if (t[j] !== '#') {
+            if (removeCount > 0) {
+                removeCount--;
+                continue;
+            }
+            if (t[j] !== stack[stack.length-1]) {
+                return false;
+            }
+            stack.pop();
         } else {
-            newT.push(tElement);
+            removeCount++;
         }
     }
-    
-    for (let i = 0; i < sArr.length; i++) {
-        if (newS[i] !== newT[i]) {
-            return false;
-        }
-    }
-    return true;
+    return !stack.length;
 };
