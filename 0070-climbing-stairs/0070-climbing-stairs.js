@@ -11,15 +11,16 @@
 //     return memory[n];
 // };
 
-// iteration
+// iteration sliding window
 var climbStairs = function(n) {
     if (n <= 2) {
         return n;
     }
-    const memory = [0, 1, 2];
+    const queue = [1, 2];
+
     for (let i = 3; i <= n; i++) {
-        memory[i] = memory[i-1] + memory[i-2];
+        queue.push(queue[0] + queue[1]);
+        queue.shift();
     }
-    
-    return memory[n];
+    return queue[queue.length-1];
 };
