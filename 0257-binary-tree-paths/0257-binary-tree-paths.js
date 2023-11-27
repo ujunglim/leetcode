@@ -12,19 +12,19 @@
  */
 var binaryTreePaths = function(root) {
     const answer = [];
-    function dfs(currNode, currPath) {
+    function traversal(currNode, currPath) {
         // leaf
         if (!currNode.left && !currNode.right) {
             answer.push(currPath.join('->'));
             return;
         }
         if (currNode.left) {
-            dfs(currNode.left, [...currPath, currNode.left.val]);
+            traversal(currNode.left, [...currPath, currNode.left.val]);
         }
          if (currNode.right) {
-            dfs(currNode.right, [...currPath, currNode.right.val]);
+            traversal(currNode.right, [...currPath, currNode.right.val]);
         }
     }
-    dfs(root, [root.val]);
+    traversal(root, [root.val]);
     return answer;
 };
