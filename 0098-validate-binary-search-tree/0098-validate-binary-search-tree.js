@@ -10,26 +10,41 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
-// 순회하면서 바로 비교할지
-// 다 정리해놓고 비교할지
-var isValidBST = function(root) {
-    const arr = [];
+// // 다 정리해놓고 비교
+// var isValidBST = function(root) {
+//     const arr = [];
     
-    function dfs(currNode) {
-        // if (!currNode) return;
-        if (!currNode.left && !currNode.right) {
-            arr.push(currNode.val);
-            return;
-        }
-        currNode.left && dfs(currNode.left);
-        arr.push(currNode.val)
-        currNode.right && dfs(currNode.right);
-    }
-    dfs(root);
-    for (let i = 0; i < arr.length-1; ++i) {
-        if (arr[i] >= arr[i+1]) {
+//     function dfs(currNode) {
+//         // if (!currNode) return;
+//         if (!currNode.left && !currNode.right) {
+//             arr.push(currNode.val);
+//             return;
+//         }
+//         currNode.left && dfs(currNode.left);
+//         arr.push(currNode.val)
+//         currNode.right && dfs(currNode.right);
+//     }
+//     dfs(root);
+//     for (let i = 0; i < arr.length-1; ++i) {
+//         if (arr[i] >= arr[i+1]) {
+//             return false;
+//         }
+//     }
+//     return true;
+// };
+
+// 순회하면서 바로 비교 
+var isValidBST = function(root) {
+    
+    function isValid(currNode, min, max) {
+        if (!currNode) return true;  // 노드가 없으면 BST와 상관없으므로 true
+        
+        if (min < currNode.val && currNode.val < max) {
+            return isValid(currNode.left, min, currNode.val) && isValid(currNode.right, currNode.val, max);
+        } else {
             return false;
         }
     }
-    return true;
-};
+    
+    return isValid(root, -Infinity, Infinity);
+}
