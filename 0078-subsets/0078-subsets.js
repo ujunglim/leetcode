@@ -2,20 +2,20 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-// 1이 선택이 된 경우 선택이 되지 않은 경우 2^3 = 8
+// 순서 상관없이 선택이 된 경우 안 된 경우
 var subsets = function(nums) {
     const answer = [];
+    const len = nums.length;
     
-    function bt(index, letter) {
-        if (index === nums.length) {
-            answer.push(letter);
+    function bt(index, accArr) {
+        if (index === len) {
+            answer.push(accArr);
             return;
         }
-        const char = nums[index];
-        bt(index+1, letter); // 선택 안 된
-        bt(index+1, [...letter, char]); // 선택 된
+        bt(index+1, [...accArr]);
+        bt(index+1, [...accArr, nums[index]]);
+
     }
-    
     bt(0, []);
     return answer;
 };
