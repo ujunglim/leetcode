@@ -1,21 +1,24 @@
-/**
- * @param {number[]} nums
- * @return {number[][]}
- */
-// 순서 상관없이 선택이 된 경우 안 된 경우
 var subsets = function(nums) {
-    const answer = [];
-    const len = nums.length;
+    let result = [[]];
     
-    function bt(index, accArr) {
-        if (index === len) {
-            answer.push(accArr);
-            return;
-        }
-        bt(index+1, [...accArr]);
-        bt(index+1, [...accArr, nums[index]]);
+    function backtrack(first, current) {
+    // we iterate over the indexes i from 'first' to the length
+    //of the entire sequence 'nums'
+    for (let i = first; i < nums.length; i++) {
+        current.push(nums[i]);
 
+        // use distructure operator to clone 'current' value and save to 'result'
+        result.push([...current]);
+
+        // generate all other subsets for the current subset.
+        // increasing the position by one to avoid duplicates in 'result'
+        backtrack(i + 1, current);
+
+        // BACKTRACK.
+        current.pop();
     }
-    bt(0, []);
-    return answer;
+}
+    
+    backtrack(0, []);
+    return result
 };
