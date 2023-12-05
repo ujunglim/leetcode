@@ -16,9 +16,6 @@ var readBinaryWatch = function (turnedOn) {
       return;
     }
     if (count === turnedOn) {
-      if (currMin === 5) {
-        // console.log("--------", count, currHour, currMin, visited);
-      }
       const formattedTime = `${currHour}:${currMin < 10 ? 0 : ""}${currMin}`;
       answer.push(formattedTime);
       return;
@@ -29,17 +26,13 @@ var readBinaryWatch = function (turnedOn) {
       // 시간초과 검사
       if (isMin) {
         if (currMin + time > 59) continue;
-        // const newNonVisitedArr = [...nonVisitedArr];
-        // newNonVisitedArr.splice(i);
-        bt(count + 1, currHour, currMin + time, nonVisitedArr.slice(i+1), [
+        bt(count + 1, currHour, currMin + time, nonVisitedArr.slice(i + 1), [
           ...visited,
           time,
         ]);
       } else {
         if (currHour + time > 11) continue;
-        const newNonVisitedArr = [...nonVisitedArr];
-        newNonVisitedArr.splice(i, 1);
-        bt(count + 1, currHour + time, currMin, nonVisitedArr.slice(i+1), [
+        bt(count + 1, currHour + time, currMin, nonVisitedArr.slice(i + 1), [
           ...visited,
           time,
         ]);
