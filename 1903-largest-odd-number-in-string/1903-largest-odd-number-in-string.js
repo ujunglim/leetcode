@@ -3,12 +3,14 @@
  * @return {string}
  */
 var largestOddNumber = function(num) {
-    const numArr = num.split('').map(e => Number(e));
+    // const numArr = num.split('').map(e => Number(e));
     
-    for (let i = numArr.length-1; i >= 0; --i) {
-        if (numArr[i] % 2 === 1) {
-            return numArr.slice(0, i+1).join('');
+    for (let i = num.length-1; i >= 0; --i) {
+        if (Number(num[i]) % 2 === 1) {
+            return num.substr(0, i+1);
+            // return num.slice(0, i+1).join('');
         }
     }
     return '';
 };
+
